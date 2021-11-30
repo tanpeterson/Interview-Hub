@@ -1,15 +1,31 @@
 CREATE TABLE public.post (
   "post_id" serial NOT NULL,
-  "message" varchar NOT NULL,
-  "password" varchar NOT NULL,
+  "title" varchar NOT NULL,
+  "author" varchar NOT NULL,
   "user_id" bigint NOT NULL,
   "created_at" timestamp DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
+  "algorithms" varchar,
+  "application" varchar,
+  "details" varchar,
+  "visibility" varchar NOT NULL,
   PRIMARY KEY ("post_id")
 ) WITH (
   OIDS=TRUE
 );
 
+CREATE TABLE public.user (
+  "user_id" serial NOT NULL,
+  "username" varchar NOT NULL,
+  "email" varchar NOT NULL,
+  "log_id" varchar NOT NULL,
+  PRIMARY KEY ("user_id")
+) WITH (
+  OIDS=TRUE
+);
 
+ALTER TABLE public.post ADD CONSTRAINT "post_fk0" FOREIGN KEY ("user_id") REFERENCES  public.user("user_id");
+
+INSERT INTO public.post VALUES (DEFAULT, 'title', 'author', DEFAULT, DEFAULT, 'algos', 'apps', 'details', 'public');
 -- {
 --   "date": "2021-11-30T02:44:05.377Z",
 --   "type": "mgmt_api_read",
@@ -54,15 +70,3 @@ CREATE TABLE public.post (
 --   "_id": "90020211130024410422898811132722062524488178305167523842",
 --   "isMobile": false
 -- }
-
-CREATE TABLE public.user (
-  "user_id" serial NOT NULL,
-  "username" varchar NOT NULL,
-  "email" varchar NOT NULL,
-  "log_id" varchar NOT NULL,
-  PRIMARY KEY ("user_id")
-) WITH (
-  OIDS=TRUE
-);
-
-ALTER TABLE public.post ADD CONSTRAINT "post_fk0" FOREIGN KEY ("user_id") REFERENCES  public.user("user_id");
