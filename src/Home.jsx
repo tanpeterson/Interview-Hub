@@ -82,7 +82,7 @@ export default function Home() {
   for (let i = 0; i < dummyData.length; i++) {
     let posts = dummyData[i];
     cards.push(
-      <Card className="post" key={i}>
+      <Card fill className="post" key={i}>
         <Card.Body>
           <Card.Title>
             {" "}
