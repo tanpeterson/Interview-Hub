@@ -8,7 +8,7 @@ import {
   Collapse,
   Accordion,
 } from "react-bootstrap";
-import CreatePost from "./CreatePost.jsx";
+import CreatePost from "./components/CreatePost.jsx";
 
 export default function Home() {
   const dummyData = [

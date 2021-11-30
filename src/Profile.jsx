@@ -9,7 +9,7 @@ import {
   Accordion,
   Form,
 } from "react-bootstrap";
-import CreatePost from "./CreatePost.jsx";
+import CreatePost from "./components/CreatePost.jsx";
 
 export default function Profile() {
   const dummyData = [

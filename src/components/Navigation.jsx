@@ -14,7 +14,7 @@ export default function Navigation() {
   <>
   <Navbar bg="light" expand="lg">
     <Container>
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <LinkContainer to="/home"><Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand></LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
