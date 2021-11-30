@@ -24,8 +24,8 @@ export default function Navigation() {
           <LinkContainer to="/profile">
             <NavLink href="/profile">Profile</NavLink>
           </LinkContainer>
-          <LinkContainer to="#mockinterview">
-            <NavLink href="#mockinterview">Mock Interview</NavLink>
+          <LinkContainer to="/mockinterview">
+            <NavLink href="/mockinterview">Mock Interview</NavLink>
           </LinkContainer>
         </Nav>     
       </Navbar.Collapse>
