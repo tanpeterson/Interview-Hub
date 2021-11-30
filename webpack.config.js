@@ -6,7 +6,8 @@ dotenv.config();
 console.log('your node env variable', process.env.NODE_ENV)
 module.exports = {
 
-    entry: path.resolve(__dirname, "./src/index.jsx"),
+    entry: ['babel-polyfill', path.resolve(__dirname, "./src/index.jsx")],
+    // entry: path.resolve(__dirname, "./src/index.jsx"),
     output: {
         path: path.resolve(__dirname, "./build"),
         filename: "bundle.js"
@@ -26,25 +27,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.(sass|css|scss)$/,
+                test: /.(css|scss)$/,
                 exclude: /node_modules/,
-                use: [
-                    'style-loader', 
-                    'css-loader', 
-                    {
-                    // Run postcss actions
-                    loader: "postcss-loader",
-                    options: {
-                      // `postcssOptions` is needed for postcss 8.x;
-                      // if you use postcss 7.x skip the key
-                      postcssOptions: {
-                        // postcss plugins, can be exported to postcss.config.js
-                        plugins: () => [require("autoprefixer")()]
-                       },
-                      }
-                     },
-                  'sass-loader'
-                ],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
