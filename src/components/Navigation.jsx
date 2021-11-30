@@ -1,6 +1,7 @@
 import React from 'react'
 // import { NavLink } from 'react-router-dom'
-import { Container, Navbar, Nav, NavDropdown, NavLink, Dropdown, NavItem, Menu, Item, Divider } from 'react-bootstrap'
+import { Container, Navbar, Nav, NavLink, NavDropdown, Dropdown, NavItem, Menu, Item, Divider } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 
 export default function Navigation() {
   return (
@@ -13,20 +14,19 @@ export default function Navigation() {
   <>
   <Navbar bg="light" expand="lg">
     <Container>
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <LinkContainer to="/home"><Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand></LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/profile">Profile</Nav.Link>
-          <Nav.Link href="#mockinterview">Mock Interview</Nav.Link>
-          {/* <NavDropdown title="Dropdown" id="nav-dropdown">
-            <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-            <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
-          </NavDropdown> */}
+          <LinkContainer to="/home">
+          <NavLink href="/home">Home</NavLink>
+          </LinkContainer>
+          <LinkContainer to="/profile">
+            <NavLink href="/profile">Profile</NavLink>
+          </LinkContainer>
+          <LinkContainer to="#mockinterview">
+            <NavLink href="#mockinterview">Mock Interview</NavLink>
+          </LinkContainer>
         </Nav>     
       </Navbar.Collapse>
     </Container>
