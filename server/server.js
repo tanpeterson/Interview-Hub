@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const { auth, requiresAuth } = require('express-openid-connect');
+require('dotenv').config()
+const postsRouter = require('./routes/posts');
+
 const app = express();
 const cors = require('cors');
 const PORT = 3000;
@@ -9,7 +12,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));
 
-const postsRouter = require('./routes/posts');
 
 const config = {
   authRequired: false,
@@ -17,7 +19,7 @@ const config = {
   secret: 'a long, randomly-generated string stored in env',
   baseURL: 'http://localhost:3000',
   clientID: 'uFDugT69kXMvgEFTXmtx5SVLRt5qfHGH',
-  issuerBaseURL: 'https://dev-6irvrif3.us.auth0.com'
+  issuerBaseURL: 'https://dev-6irvrif3.us.auth0.com',
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL

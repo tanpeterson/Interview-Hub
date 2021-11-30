@@ -26,6 +26,7 @@ CREATE TABLE public.user (
 ALTER TABLE public.post ADD CONSTRAINT "post_fk0" FOREIGN KEY ("user_id") REFERENCES  public.user("user_id");
 
 INSERT INTO public.post VALUES (DEFAULT, 'title', 'author', DEFAULT, DEFAULT, 'algos', 'apps', 'details', 'public');
+
 -- {
 --   "date": "2021-11-30T02:44:05.377Z",
 --   "type": "mgmt_api_read",
