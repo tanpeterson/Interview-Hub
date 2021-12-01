@@ -9,13 +9,13 @@ router.get('/', postController.getHomePosts, (req, res) => {
     res.status(200).json([...res.locals.posts]);
 } )
 
-// router.get('/', postController.getPosts, (req, res) => {
-//     res.status(200).json([...res.locals.posts]);
-// } )
+//fetching posts for profile view 
+router.get('/profile', postController.getProfilePosts, (req, res) => {
+    res.status(200).json([...res.locals.posts]);
+} )
 
 //add a post 
 router.post('/', postController.postPost, (req, res) => {
-    console.log('in final middleware');
     res.sendStatus(200);
 } )
 
