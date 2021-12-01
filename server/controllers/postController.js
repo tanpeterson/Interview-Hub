@@ -1,4 +1,3 @@
- const { Title } = require('react-bootstrap/lib/Modal');
 const db = require('../models/PostModel');
 
  const postController = {};
@@ -17,6 +16,8 @@ const db = require('../models/PostModel');
       return next(err);
     });
 };
+
+// get request for profile view that grabs posts posted by the currently logged in user 
 
 // req.body = {
 //     Title,

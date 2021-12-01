@@ -5,8 +5,13 @@ const router = express.Router();
 
 //fetching posts for home view
 router.get('/', postController.getPosts, (req, res) => {
+    console.log(req.oidc);
     res.status(200).json([...res.locals.posts]);
 } )
+
+// router.get('/', postController.getPosts, (req, res) => {
+//     res.status(200).json([...res.locals.posts]);
+// } )
 
 //add a post 
 router.post('/', postController.postPost, (req, res) => {
