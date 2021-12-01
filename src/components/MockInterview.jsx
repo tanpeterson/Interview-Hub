@@ -1,11 +1,12 @@
 import React from 'react'
 //import ChatRoom from './ChatRoom.jsx'
+import { Container } from 'react-bootstrap'
 import RoomView from './RoomView.jsx'
 
 export default function MockInterview() {
 
   return (
-   <div>
+    <Container fluid className="newdark">
     <div id="buttons">
     <button className="mdc-button mdc-button--raised" id="cameraBtn">
         <i className="material-icons mdc-button__icon" aria-hidden="true">perm_camera_mic</i>
@@ -62,6 +63,6 @@ export default function MockInterview() {
     <div className="mdc-dialog__scrim"></div>
 </div>
 <RoomView />
-</div>
+</Container>
   )
 }
