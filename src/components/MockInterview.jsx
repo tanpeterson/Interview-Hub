@@ -1,5 +1,6 @@
 import React from 'react'
-
+//import ChatRoom from './ChatRoom.jsx'
+import RoomView from './RoomView.jsx'
 
 export default function MockInterview() {
 
@@ -60,6 +61,7 @@ export default function MockInterview() {
     </div>
     <div className="mdc-dialog__scrim"></div>
 </div>
+<RoomView />
 </div>
   )
 }

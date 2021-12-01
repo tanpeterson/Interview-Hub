@@ -45,7 +45,6 @@ function init() {
 }
 
 async function createRoom() {
-console.log('\nIN CREATE ROOM\n')
 
 // let app = initializeApp(firebaseConfig);
 
@@ -54,7 +53,14 @@ document.querySelector('#joinBtn').disabled = true;
 const db = firebase.firestore();
 const roomRef = await db.collection('rooms').doc();
 
-console.log('Poop PeerConnection with configuration: ', configuration);
+// db.collection("rooms").onSnapshot((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//       console.log(doc.data()); // For data inside doc
+//       console.log(doc.id); // For doc name
+//   })
+// })
+
+console.log('Create PeerConnection with configuration: ', configuration);
 peerConnection = new RTCPeerConnection(configuration);
 
 registerPeerConnectionListeners();
@@ -126,19 +132,19 @@ roomRef.collection('calleeCandidates').onSnapshot(snapshot => {
 // Listen for remote ICE candidates above
 }
 
-function joinRoom() {
-document.querySelector('#createBtn').disabled = true;
-document.querySelector('#joinBtn').disabled = true;
+export function joinRoom(roomIdx = '') {
+  document.querySelector('#createBtn').disabled = true;
+  document.querySelector('#joinBtn').disabled = true;
 
-document.querySelector('#confirmJoinBtn').
-    addEventListener('click', async () => {
-      roomId = document.querySelector('#room-id').value;
-      console.log('Join room: ', roomId);
-      document.querySelector(
-          '#currentRoom').innerText = `Current room is ${roomId} - You are the callee!`;
-      await joinRoomById(roomId);
-    }, {once: true});
-roomDialog.open();
+  document.querySelector('#confirmJoinBtn').
+      addEventListener('click', async () => {
+        roomId = document.querySelector('#room-id').value;
+        console.log('Join room: ', roomId);
+        document.querySelector(
+            '#currentRoom').innerText = `Current room is ${roomId} - You are the callee!`;
+        await joinRoomById(roomId);
+      }, {once: true});
+  roomDialog.open();
 }
 
 async function joinRoomById(roomId) {
@@ -148,7 +154,7 @@ const roomSnapshot = await roomRef.get();
 console.log('Got room:', roomSnapshot.exists);
 
 if (roomSnapshot.exists) {
-  console.log('Poop!! PeerConnection with configuration: ', configuration);
+  console.log('Create PeerConnection with configuration: ', configuration);
   peerConnection = new RTCPeerConnection(configuration);
   registerPeerConnectionListeners();
   localStream.getTracks().forEach(track => {
