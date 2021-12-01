@@ -41,6 +41,7 @@
     "express-openid-connect": "^2.5.1",
     "express-session": "^1.17.2",
     "file-loader": "^6.2.0",
+    "firebase": "^9.5.0",
     "i": "^0.3.7",
     "node-fetch": "^2.6.5",
     "node-sass": "^6.0.1",

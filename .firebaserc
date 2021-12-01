@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "teammewtwo-3002b",
+    "staging": "teammewtwo-3002b"
+  },
+  "targets": {}
+}
