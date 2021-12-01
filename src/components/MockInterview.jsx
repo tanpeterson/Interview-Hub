@@ -1,30 +1,31 @@
 import React from 'react'
 //import ChatRoom from './ChatRoom.jsx'
-import { Container } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 import RoomView from './RoomView.jsx'
 
 export default function MockInterview() {
 
   return (
-    <Container fluid className="newdark2">
-        <div>
-    <div id="buttons">
-    <button className="mdc-button mdc-button--raised" id="cameraBtn">
+    <Container className="newlight2">
+        <div className="h-100">
+            <div className="card navcolor  mt-5 border rounded border-dark">
+    <div className="bootton">
+    <Button variant="primary" className="mt-3 mdc-button mdc-button--raised" id="cameraBtn">
         <i className="material-icons mdc-button__icon" aria-hidden="true">perm_camera_mic</i>
         <span className="mdc-button__label">Open camera & microphone</span>
-    </button>
-    <button className="mdc-button mdc-button--raised" disabled id="createBtn">
+    </Button>
+    <Button variant="secondary" className="ms-3 mt-3 mdc-button mdc-button--raised" disabled id="createBtn">
         <i className="material-icons mdc-button__icon" aria-hidden="true">group_add</i>
         <span className="mdc-button__label">Create room</span>
-    </button>
-    <button className="mdc-button mdc-button--raised" disabled id="joinBtn">
+    </Button>
+    {/* <Button variant="secondary" className="ms-3 mt-3 mdc-button mdc-button--raised" disabled id="joinBtn">
         <i className="material-icons mdc-button__icon" aria-hidden="true">group</i>
         <span className="mdc-button__label">Join room</span>
-    </button>
-    <button className="mdc-button mdc-button--raised" disabled id="hangupBtn">
+    </Button> */}
+    <Button variant="secondary" className="ms-3 mt-3 mdc-button mdc-button--raised" disabled id="hangupBtn">
         <i className="material-icons mdc-button__icon" aria-hidden="true">close</i>
         <span className="mdc-button__label">Hangup</span>
-    </button>
+    </Button>
   </div>
   <div>
       <span id="currentRoom"></span>
@@ -32,6 +33,7 @@ export default function MockInterview() {
   <div id="videos">
       <video id="localVideo" muted autoPlay playsInline></video>
       <video id="remoteVideo" autoPlay playsInline></video>
+  </div>
   </div>
   <div className="mdc-dialog"
      id="room-dialog"

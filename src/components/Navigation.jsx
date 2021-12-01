@@ -12,23 +12,24 @@ export default function Navigation() {
   //   </ul>
   // </nav>
   <>
-  <Navbar bg="light" expand="lg">
+  <Navbar className="header" expand="lg">
     <Container>
-      <LinkContainer to="/home"><Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand></LinkContainer>
+      <LinkContainer to="/home"><Navbar.Brand href="/home">Interview Roulette <i class="fas fa-dice"></i></Navbar.Brand></LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <LinkContainer to="/home">
+          <LinkContainer className="nav-link" to="/home">
           <NavLink href="/home">Home</NavLink>
           </LinkContainer>
-          <LinkContainer to="/profile">
+          <LinkContainer className="nav-link" to="/profile">
             <NavLink href="/profile">Profile</NavLink>
           </LinkContainer>
-          <LinkContainer to="/mockinterview">
+          <LinkContainer className="nav-link" to="/mockinterview">
             <NavLink href="/mockinterview">Mock Interview</NavLink>
           </LinkContainer>
         </Nav>     
       </Navbar.Collapse>
+      <h6>Logged in as <strong>Tanner</strong></h6>
     </Container>
   </Navbar>
   </>

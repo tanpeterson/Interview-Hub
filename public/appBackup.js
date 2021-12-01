@@ -1,5 +1,14 @@
-// import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-// import { getFirestore, doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+import {
+  initializeApp,
+  getApp,
+} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
 
 //hevagTNtzpv21kdOIW8F
 
@@ -30,13 +39,13 @@ let remoteStream = null;
 let roomDialog = null;
 let roomId = null;
 
-export function init() {
+function init() {
   console.log("HERE");
   mdc.ripple.MDCRipple.attachTo(document.querySelector(".mdc-button"));
   document.querySelector("#cameraBtn").addEventListener("click", openUserMedia);
   document.querySelector("#hangupBtn").addEventListener("click", hangUp);
   document.querySelector("#createBtn").addEventListener("click", createRoom);
-  // document.querySelector("#joinBtn").addEventListener("click", joinRoom);
+  document.querySelector("#joinBtn").addEventListener("click", joinRoom);
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector("#room-dialog"));
 }
 
@@ -44,7 +53,7 @@ async function createRoom() {
   // let app = initializeApp(firebaseConfig);
 
   document.querySelector("#createBtn").disabled = true;
-  // document.querySelector("#joinBtn").disabled = true;
+  document.querySelector("#joinBtn").disabled = true;
   const db = firebase.firestore();
   const roomRef = await db.collection("rooms").doc();
 
@@ -130,7 +139,7 @@ async function createRoom() {
 
 function joinRoom(roomIdx = "") {
   document.querySelector("#createBtn").disabled = true;
-  // document.querySelector("#joinBtn").disabled = true;
+  document.querySelector("#joinBtn").disabled = true;
 
   document.querySelector("#confirmJoinBtn").addEventListener(
     "click",
@@ -147,7 +156,7 @@ function joinRoom(roomIdx = "") {
   roomDialog.open();
 }
 
-export async function joinRoomById(roomId) {
+async function joinRoomById(roomId) {
   const db = firebase.firestore();
   const roomRef = db.collection("rooms").doc(`${roomId}`);
   const roomSnapshot = await roomRef.get();
@@ -212,7 +221,7 @@ export async function joinRoomById(roomId) {
   }
 }
 
-export async function openUserMedia(e) {
+async function openUserMedia(e) {
   const stream = await navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true,
@@ -224,7 +233,7 @@ export async function openUserMedia(e) {
 
   console.log("Stream:", document.querySelector("#localVideo").srcObject);
   document.querySelector("#cameraBtn").disabled = true;
-  // document.querySelector("#joinBtn").disabled = false;
+  document.querySelector("#joinBtn").disabled = false;
   document.querySelector("#createBtn").disabled = false;
   document.querySelector("#hangupBtn").disabled = false;
 }
@@ -246,7 +255,7 @@ async function hangUp(e) {
   document.querySelector("#localVideo").srcObject = null;
   document.querySelector("#remoteVideo").srcObject = null;
   document.querySelector("#cameraBtn").disabled = false;
-  // document.querySelector("#joinBtn").disabled = true;
+  document.querySelector("#joinBtn").disabled = true;
   document.querySelector("#createBtn").disabled = true;
   document.querySelector("#hangupBtn").disabled = true;
   document.querySelector("#currentRoom").innerText = "";
@@ -292,6 +301,6 @@ function registerPeerConnectionListeners() {
 }
 
 // init();
-// window.onload = () => {
-//   init();
-// };
+window.onload = () => {
+  init();
+};

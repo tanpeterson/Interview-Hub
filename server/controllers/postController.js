@@ -34,16 +34,7 @@ postController.getProfilePosts = (req, res, next) => {
       return next(err);
     });
 }
-// req.body = {
-//     Title,
-//     author,
-//     userID,
-//     offer,
-//     algorithms,
-//     application,
-//     details,
-//     visability,
-// }
+
 
 postController.postPost = (req, res, next) => {
  
@@ -62,8 +53,6 @@ postController.postPost = (req, res, next) => {
 
 //req.body should send post_id
 postController.deletePost = (req, res, next) => {
-  console.log('in deletePost');
-  console.log('id', req.body.post_id);
   
   const queryText = 'DELETE FROM post WHERE post_id=' + req.body.post_id + ';';
   db.query(queryText, (err, result) => {

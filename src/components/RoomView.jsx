@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Container } from "react-bootstrap";
+import { joinRoomById, init } from '../../public/app';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBHBv6bOm-CfklcLcHrEMQtKTjPahnWczQ",
@@ -20,8 +21,8 @@ export default function RoomView() {
 	let openRooms = [];
 
 	useEffect(() => {
+		init()
 		db.collection("rooms").onSnapshot((querySnapshot) => {
-			// console.log(querySnapshot.docs.)
 			let rooms = querySnapshot.docs.reduce((acc, cv) => { 
 				return !acc.includes(cv.id) ? [...acc, cv.id] : acc;
 			 }, [])
@@ -31,25 +32,15 @@ export default function RoomView() {
 
 	for(let i = 0; i < currentRooms.length; i++){
 		openRooms.push(
-			<li className="d-flex justify-content-between">
-                        <div className="d-flex flex-row align-items-center"><i className="fa fa-check-circle checkicon"></i>
-                            <div className="ml-2">
-                                <h6 className="mb-0"> Room {currentRooms[i]}</h6>
-                                <div className="d-flex flex-row mt-1 text-black-50 date-time">
-                                    <div><i className="fa fa-calendar-o"></i><span className="ml-2">22 May 2020 11:30 PM</span></div>
-                                    <div className="ml-3"><i className="fa fa-clock-o"></i><span className="ml-2">6h</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="d-flex flex-row align-items-center">
-                            <Button variant="outline-dark" onClick={() => joinRoom(currentRooms[i])}></Button>
-                        </div>
+			<li className="d-flex justify-content-between border border-dark border rounded">
+                         <i className="mt-2 me-2 ms-2 fa fa-check-circle checkicon"></i>
+                            
+                                <h6 className="mt-2"> Room {i+1}</h6>
+
+                        <div className="d-flex ms-4 flex-row align-items-center">
+                            <Button variant="outline-dark" size="sm" onClick={() => joinRoomById(currentRooms[i])}> JOIN </Button>
+                       </div>
                     </li>
-            // <div className="d-flex justify-content-start mb-4" key={i}>
-			// 	<div className="msg_cotainer" onClick={() => joinRoom(currentRooms[i])}>
-			// 		Room  {currentRooms[i]}
-			// 	</div>
-			// </div>
 		)
 	}
 
@@ -57,16 +48,16 @@ export default function RoomView() {
 
     
     
-            <div class="d-flex justify-content-center align-items-center activity">
-    
-                <div><span className="activity-done">Open Rooms {openRooms.length}</span></div>
-                <div className="icons"><i className="fas fa-search"></i><i className="fa fa-ellipsis-h"></i></div>
+            <div className="d-flex justify-content-center align-items-center activity">
+				
+                <div className="mt-2 pe-2 ps-2 pt-3 navcolor activity-done border border-dark border rounded text-dark text-center"> <strong>Open Rooms</strong> ( {openRooms.length} ) 
             
-            <div className="mt-3">
+            <div className="mt-2">
                 <ul className="list list-inline">
                     {openRooms}
                 </ul>
             </div>
+			</div>
             </div> 
          
            

@@ -76,6 +76,19 @@ export default function Home() {
       if (!posts.includes(el)) setPosts(oldArray => [...oldArray, el])
     })
   }
+  
+  // const favoritePosts = async (post_id) => {
+  //   const response = await fetch("http://localhost:3000/posts/favorites", {
+  //     method: 'POST',
+  //     headers: { 'Content-type': 'application/json'},
+  //     body: JSON.stringify({ post_id })
+  // })
+  //   const data = await response.json();
+  //   setPosts([])
+  //   data.forEach((el) => {
+  //     if (!posts.includes(el)) setPosts(oldArray => [...oldArray, el])
+  //   })
+  // }
 
   const handleClose = () => setModalShow(false);
   const handleShow = () => setModalShow(true);
@@ -86,8 +99,8 @@ export default function Home() {
     let post = posts[i];
     cards.push(
       
-      <Card fluid className="postcard dark blue" key={i}>
-        <Card.Body className="postcard__text">
+      <Card fluid className="postcard light blue" key={i}>
+        <Card.Body className="postcard__text t-dark">
           <Card.Title className="postcard__title blue">
             {" "}
             {post.title}{" "}
@@ -97,10 +110,10 @@ export default function Home() {
             </span>{" "}
           </Card.Title>
           <Card.Subtitle className="text-muted mb-2">
-            {post.offer}
+            $ {post.offer}
           </Card.Subtitle>
-          <time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i> Tue, Nov 30th 2021
+          <time dateTime="2020-05-25">
+						<i class="fas fa-calendar-alt mr-2"></i> {post.created_at?.replace(/T(.*)/, '')}
 					</time>
           <div className="postcard__bar"></div>  
           <div className="cardSize overflow-auto scrollbar scrollbar-morpheus-den">
@@ -115,11 +128,10 @@ export default function Home() {
           </Card.Text>
           </div>
           <ul className="postcard__tagbox">
-					<li className="tag__item"><i className="fas fa-tag mr-2"></i> Google</li>
-					<li className="tag__item"><i className="fas fa-tag mr-2"></i> L2 </li>
+            {post.title.split(' ').map(el => <li className="tag__item"><i className="fas fa-tag mr-2"></i>{el}</li>)}	
 				</ul>
         
-        <div className="mt-2">
+        {/* <div className="mt-2">
         <Button variant="outline-light" >
             {" "}
             <i className="far fa-comment-alt"></i> Comments{" "}
@@ -128,7 +140,7 @@ export default function Home() {
             {" "}
             <i className="far fa-heart"></i> Favorite{" "}
           </Button>
-          </div>
+          </div> */}
         </Card.Body>
        
       </Card>
@@ -137,7 +149,7 @@ export default function Home() {
   }
 
   return (
-    <Container fluid className="newdark">
+    <Container fluid className="newlight">
       <Button className="bth-bth-primary" onClick={() => setModalShow(true)}>
         {" "}
         <i className="fas fa-plus"></i> Create Post{" "}

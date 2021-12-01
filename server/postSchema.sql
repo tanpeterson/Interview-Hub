@@ -1,3 +1,19 @@
+CREATE TABLE public.test (
+  "post_id" serial NOT NULL,
+  "title" varchar NOT NULL,
+  "author" varchar NOT NULL,
+  "user_id" bigint NOT NULL,
+  "offer" varchar NOT NULL,
+  "created_at" date NOT NULL DEFAULT CURRENT_DATE,
+  "algorithms" varchar,
+  "application" varchar,
+  "details" varchar,
+  "visibility" varchar NOT NULL,
+  PRIMARY KEY ("post_id")
+) WITH (
+  OIDS=TRUE
+);
+
 CREATE TABLE public.post (
   "post_id" serial NOT NULL,
   "title" varchar NOT NULL,
@@ -13,7 +29,6 @@ CREATE TABLE public.post (
 ) WITH (
   OIDS=TRUE
 );
-
 CREATE TABLE public.user (
   "user_id" serial NOT NULL,
   "username" varchar NOT NULL,
@@ -26,7 +41,10 @@ CREATE TABLE public.user (
 
 ALTER TABLE public.post ADD CONSTRAINT "post_fk0" FOREIGN KEY ("user_id") REFERENCES  public.user("user_id");
 
-INSERT INTO public.post VALUES (DEFAULT, 'title', 'author', 0, 'offer', DEFAULT, 'algos', 'apps', 'details', 'public');
+INSERT INTO public.post VALUES (DEFAULT, 'Google L3 Engineer', 'Harry', 1, '180k', DEFAULT, 'Valid BST, FizzBuzz, ThreeSum', 'Codesmith-Style Application', 'Phone Interview with technical recruiter followed by on-site interview', 'public');
+INSERT INTO public.post VALUES (DEFAULT, 'Netflix Senior Software Engineer', 'Sonny', 1, '500k', DEFAULT, 'Num Islands, MergeSort,  ', 'Codesmith-Style Application', '7 rounds of interviews, combination of algorithm questions and system design questions', 'public');
+INSERT INTO public.post VALUES (DEFAULT, 'Co-Star Senior Frontend Engineer', 'Kristina', 1, '690k', DEFAULT, 'Fizzbuzz,', 'Codesmith-Style Application', 'On site technical and behavioral interview. Hired on the spot.', 'public');
+
 
 -- {
 --   "date": "2021-11-30T02:44:05.377Z",
