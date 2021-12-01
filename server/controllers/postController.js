@@ -3,7 +3,7 @@ const db = require('../models/PostModel');
  const postController = {};
 
  // get Messages for Home View
- postController.getPosts = (req, res, next) => {
+ postController.getHomePosts = (req, res, next) => {
   const queryText = 'SELECT * FROM post';
 
   db.query(queryText)
@@ -18,7 +18,21 @@ const db = require('../models/PostModel');
 };
 
 // get request for profile view that grabs posts posted by the currently logged in user 
+postController.getProfilePosts = (req, res, next) => {
 
+  const queryText = `SELECT * FROM post WHERE user_id = $1`
+  const values = [req.body.user_id]
+
+  db.query(queryText, values)
+    .then( result => {
+      res.locals.posts = result.rows;
+      return next();
+    })
+    .catch( err => {
+      console.log(err);
+      return next(err);
+    });
+}
 // req.body = {
 //     Title,
 //     author,
@@ -33,7 +47,7 @@ const db = require('../models/PostModel');
 postController.postPost = (req, res, next) => {
   console.log('in postPost');
   console.log('req body:', req.body);
-  const queryText = `INSERT INTO post VALUES (DEFAULT, $1, $2, $3, DEFAULT, $4, $5, $6, $7)`;
+  const queryText = `INSERT INTO post VALUES (DEFAULT, $1, $2, $3, $4, DEFAULT, $5, $6, $7, $8)`;
   const values = [req.body.title, req.body.author, req.body.userID, req.body.offer, req.body.algorithms, req.body.application, req.body.details, req.body.visibility];
     
   db.query(queryText, values)
@@ -41,6 +55,7 @@ postController.postPost = (req, res, next) => {
         return next();
     })
     .catch(err => {
+        console.log(err);
         return next(err);
     });
 };

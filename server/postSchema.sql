@@ -3,6 +3,7 @@ CREATE TABLE public.post (
   "title" varchar NOT NULL,
   "author" varchar NOT NULL,
   "user_id" bigint NOT NULL,
+  "offer" varchar NOT NULL,
   "created_at" timestamp DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
   "algorithms" varchar,
   "application" varchar,
@@ -25,7 +26,7 @@ CREATE TABLE public.user (
 
 ALTER TABLE public.post ADD CONSTRAINT "post_fk0" FOREIGN KEY ("user_id") REFERENCES  public.user("user_id");
 
-INSERT INTO public.post VALUES (DEFAULT, 'title', 'author', DEFAULT, DEFAULT, 'algos', 'apps', 'details', 'public');
+INSERT INTO public.post VALUES (DEFAULT, 'title', 'author', 0, 'offer', DEFAULT, 'algos', 'apps', 'details', 'public');
 
 -- {
 --   "date": "2021-11-30T02:44:05.377Z",
