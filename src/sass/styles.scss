@@ -2,6 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
 
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
 .authorFont {
     font-size: 5px;
 }
@@ -30,13 +38,6 @@ $main-blue: #0076bd !default;
 $main-blue-rgb-015: rgba(0, 118, 189, 0.1) !default;
 
 /* This pen */
-body {
-	font-family: "Baloo 2", cursive;
-	font-size: 16px;
-	color: #ffffff;
-	text-rendering: optimizeLegibility;
-	font-weight: initial;
-}
 
 .dark {
 	background: #110f16;
@@ -49,7 +50,13 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
+.newdark2{
+	background: #110f16;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
 
 .light {
 	background: #f3f5f7;

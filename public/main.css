@@ -1,3 +1,9 @@
+
+html {
+    height: 100%;
+    margin: 0;
+  }
+
 body {
     background: #ECEFF1;
     color: rgba(0, 0, 0, 0.87);
@@ -5,6 +11,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
 
 #message {
     background: white;
@@ -67,13 +75,13 @@ body {
     }
 }
 
-body {
+/* body {
     margin: 1em;
-}
-
+} */
+/* 
 button {
     margin: 0.2em 0.1em;
-}
+} */
 
 div#videos {
     display: flex;
