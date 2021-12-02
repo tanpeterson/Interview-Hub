@@ -31,7 +31,6 @@ let roomDialog = null;
 let roomId = null;
 
 export function init() {
-  console.log("HERE");
   mdc.ripple.MDCRipple.attachTo(document.querySelector(".mdc-button"));
   document.querySelector("#cameraBtn").addEventListener("click", openUserMedia);
   document.querySelector("#hangupBtn").addEventListener("click", hangUp);
@@ -48,13 +47,6 @@ async function createRoom() {
   const db = firebase.firestore();
   const roomRef = await db.collection("rooms").doc();
 
-  // db.collection("rooms").onSnapshot((querySnapshot) => {
-  //   querySnapshot.forEach((doc) => {
-  //       console.log(doc.data()); // For data inside doc
-  //       console.log(doc.id); // For doc name
-  //   })
-  // })
-
   console.log("Create PeerConnection with configuration: ", configuration);
   peerConnection = new RTCPeerConnection(configuration);
 
@@ -64,7 +56,6 @@ async function createRoom() {
     peerConnection.addTrack(track, localStream);
   });
 
-  // Code for collecting ICE candidates below
   const callerCandidatesCollection = roomRef.collection("callerCandidates");
 
   peerConnection.addEventListener("icecandidate", (event) => {
@@ -75,9 +66,7 @@ async function createRoom() {
     console.log("Got candidate: ", event.candidate);
     callerCandidatesCollection.add(event.candidate.toJSON());
   });
-  // Code for collecting ICE candidates above
 
-  // Code for creating a room below
   const offer = await peerConnection.createOffer();
   await peerConnection.setLocalDescription(offer);
   console.log("Created offer:", offer);
@@ -91,10 +80,6 @@ async function createRoom() {
   await roomRef.set(roomWithOffer);
   roomId = roomRef.id;
   console.log(`New room created with SDP offer. Room ID: ${roomRef.id}`);
-  document.querySelector(
-    "#currentRoom"
-  ).innerText = `Current room is ${roomRef.id} - You are the caller!`;
-  // Code for creating a room above
 
   peerConnection.addEventListener("track", (event) => {
     console.log("Got remote track:", event.streams[0]);
@@ -137,9 +122,6 @@ function joinRoom(roomIdx = "") {
     async () => {
       roomId = document.querySelector("#room-id").value;
       console.log("Join room: ", roomId);
-      document.querySelector(
-        "#currentRoom"
-      ).innerText = `Current room is ${roomId} - You are the callee!`;
       await joinRoomById(roomId);
     },
     { once: true }
@@ -291,7 +273,3 @@ function registerPeerConnectionListeners() {
   });
 }
 
-// init();
-// window.onload = () => {
-//   init();
-// };

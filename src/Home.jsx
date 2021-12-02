@@ -3,6 +3,8 @@ import {
   Button,
   Card,
   Container,
+  Row,
+  Col
 } from "react-bootstrap";
 import "./sass/scrollbar.css"
 import CreatePost from "./components/CreatePost.jsx";
@@ -128,7 +130,7 @@ export default function Home() {
           </Card.Text>
           </div>
           <ul className="postcard__tagbox">
-            {post.title.split(' ').map(el => <li className="tag__item"><i className="fas fa-tag mr-2"></i>{el}</li>)}	
+            {post.title.split(' ').map(el => <li className="tag__item"><i className="fas fa-tag mr-2"></i> {el}</li>)}	
 				</ul>
         
         {/* <div className="mt-2">
@@ -150,13 +152,19 @@ export default function Home() {
 
   return (
     <Container fluid className="newlight">
-      <Button className="bth-bth-primary" onClick={() => setModalShow(true)}>
+
+      <h1 className="h1 text-center" id="pageHeaderTitle"> Dashboard </h1>
+    
+     
+      <div className="testingButton">
+      <Button variant="primary" onClick={() => setModalShow(true)}>
         {" "}
         <i className="fas fa-plus"></i> Create Post{" "}
       </Button>
-      <h1 className="h1 text-center" id="pageHeaderTitle"> Feed </h1>
+      </div>
       {modalShow ? <CreatePost show={modalShow} onHide={() => setModalShow(false)}/> : null }
       {cards}
+      
     </Container>
  
   );

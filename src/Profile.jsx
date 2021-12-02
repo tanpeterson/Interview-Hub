@@ -18,42 +18,6 @@ export default function Home() {
       details: "loading",
       visibility: 'public'
     },
-    {
-      title: "loading",
-      author: "loading",
-      offer: "loading",
-      algorithms: "loading",
-      application: "loading",
-      details: "loading",
-      visibility: 'public'
-    },
-    {
-      title: "loading",
-      author: "loading",
-      offer: "loading",
-      algorithms: "loading",
-      application: "loading",
-      details: "loading",
-      visibility: 'public'
-    },
-    {
-      title: "loading",
-      author: "loading",
-      offer: "loading",
-      algorithms: "loading",
-      application: "loading",
-      details: "loading",
-      visibility: 'public'
-    },
-    {
-      title: "loading",
-      author: "loading",
-      offer: "loading",
-      algorithms: "loading",
-      application: "loading",
-      details: "loading",
-      visibility: 'public'
-    },
   ];
 
   // const [posts, setPosts] = useState([]);
@@ -152,11 +116,14 @@ export default function Home() {
 
   return (
     <Container fluid className="newlight">
-      <Button className="bth-bth-primary" onClick={() => setModalShow(true)}>
-        {" "}
-        <i className="fas fa-plus"></i> Create Post{" "}
-      </Button>
-      <h1 className="h1 text-center" id="pageHeaderTitle"> Feed </h1>
+      <h1 className="h1 text-center" id="pageHeaderTitle"> Profile </h1>
+      <div className='testingButton'>
+        <Button className="bth-bth-primary createPostButton" onClick={() => setModalShow(true)}>
+          {" "}
+          <i className="fas fa-plus"></i> Create Post{" "}
+        </Button>
+      </div>
+
       {modalShow ? <CreatePost show={modalShow} onHide={() => setModalShow(false)}/> : null }
       {cards}
     </Container>

@@ -19,6 +19,20 @@ html, body {
   box-sizing: border-box;
 }
 
+#roomsDiv {
+  min-width: 300px;
+}
+
+.createPostButton {
+  margin-top: 5px;
+}
+
+.testingButton {
+  display: flex;
+  min-width: 60%;
+  justify-content: flex-start;
+}
+
 h6{
   color: black;
 }
@@ -28,6 +42,10 @@ background: #C9D6FF !important;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF) !important;  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #E2E2E2, #C9D6FF) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+
+.openroom {
+  min-width: 35%;
 }
 
 .authorFont {
@@ -44,7 +62,7 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF) !important; /* W3C, IE 1
 
 .cardSize {
   width: 100%;
-  height: 120px;
+  height: 130px;
   max-height: 25vh;
 }
 

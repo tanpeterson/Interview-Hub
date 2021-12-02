@@ -50,9 +50,9 @@ export default function RoomView() {
     
             <div className="d-flex justify-content-center align-items-center activity">
 				
-                <div className="mt-2 pe-2 ps-2 pt-3 navcolor activity-done border border-dark border rounded text-dark text-center"> <strong>Open Rooms</strong> ( {openRooms.length} ) 
+                <div className="mt-2 pe-3 ps-3 pt-3 navcolor activity-done border border-dark border rounded text-dark text-center"> <strong>Open Rooms</strong> ( {openRooms.length} ) 
             
-            <div className="mt-2">
+            <div className="mt-2" id="roomsDiv">
                 <ul className="list list-inline">
                     {openRooms}
                 </ul>

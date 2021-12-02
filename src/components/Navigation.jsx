@@ -14,7 +14,7 @@ export default function Navigation() {
   <>
   <Navbar className="header" expand="lg">
     <Container>
-      <LinkContainer to="/home"><Navbar.Brand href="/home">Interview Roulette <i class="fas fa-dice"></i></Navbar.Brand></LinkContainer>
+      <LinkContainer to="/home"><Navbar.Brand href="/home"> <i class="fas fa-lightbulb"></i>  Interview Hub </Navbar.Brand></LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
