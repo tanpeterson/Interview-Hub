@@ -8,15 +8,15 @@ export default function CreatePost(props) {
   const [interviewInput, setInterviewInput] = useState("");
   const [offerInput, setOfferInput] = useState("");
   const [algoInput, setAlgoInput] = useState("");
-  const [viewInput, setViewInput] = useState("");
+  const [view, setView] = useState("private");
 
   const handleSubmit = async () => {
-    const response = await fetch("http://localhost:3000/NewPost", {
+    const response = await fetch("http://localhost:3000/posts", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({titleInput, applicationInput, interviewInput, offerInput, algoInput})
+      body: JSON.stringify({ title: titleInput, application: applicationInput, details: interviewInput, offer: offerInput, algorithms: algoInput, author: 'Tanner', user_id: 0, visibility: view })
     })
-    props.onHide();
+    props.onHide
   }
 
   return (
@@ -81,10 +81,10 @@ export default function CreatePost(props) {
          
           <Row>
             <Col>
-              <Form.Select onSelect={(e) => setView(e.target.value)}>
+              <Form.Select onSelect={(e) => setView(e.target.value)} onChange={(e) => setView(e.target.value)}>
                 <option value="" selected disabled hidden>Visibility</option>
-                <option value="Public">Public</option>
-                <option value="Private">Private</option>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
               </Form.Select>
             </Col>
             <Col></Col>
@@ -93,7 +93,7 @@ export default function CreatePost(props) {
           </Row>
         </Modal.Body>
         <Modal.Footer className="d-grid gap-2">
-          <Button variant="primary" type="submit" onClick={props.onHide}>
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             Confirm
           </Button>
         </Modal.Footer>
