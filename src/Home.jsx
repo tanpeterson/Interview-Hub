@@ -58,11 +58,6 @@ export default function Home() {
     },
   ];
 
-  // const [posts, setPosts] = useState([]);
-
-  // const [newPost, setNewPost] = useState([]);
-  
-  // const [open, setOpen] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [posts, setPosts] = useState(dummyData);
 
@@ -78,19 +73,7 @@ export default function Home() {
       if (!posts.includes(el)) setPosts(oldArray => [...oldArray, el])
     })
   }
-  
-  // const favoritePosts = async (post_id) => {
-  //   const response = await fetch("http://localhost:3000/posts/favorites", {
-  //     method: 'POST',
-  //     headers: { 'Content-type': 'application/json'},
-  //     body: JSON.stringify({ post_id })
-  // })
-  //   const data = await response.json();
-  //   setPosts([])
-  //   data.forEach((el) => {
-  //     if (!posts.includes(el)) setPosts(oldArray => [...oldArray, el])
-  //   })
-  // }
+
 
   const handleClose = () => setModalShow(false);
   const handleShow = () => setModalShow(true);
@@ -133,16 +116,6 @@ export default function Home() {
             {post.title.split(' ').map(el => <li className="tag__item"><i className="fas fa-tag mr-2"></i> {el}</li>)}	
 				</ul>
         
-        {/* <div className="mt-2">
-        <Button variant="outline-light" >
-            {" "}
-            <i className="far fa-comment-alt"></i> Comments{" "}
-          </Button> 
-         <Button variant="outline-light" className="ms-2">
-            {" "}
-            <i className="far fa-heart"></i> Favorite{" "}
-          </Button>
-          </div> */}
         </Card.Body>
        
       </Card>

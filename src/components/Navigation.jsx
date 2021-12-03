@@ -1,16 +1,10 @@
 import React from 'react'
-// import { NavLink } from 'react-router-dom'
-import { Container, Navbar, Nav, NavLink, NavDropdown, Dropdown, NavItem, Menu, Item, Divider } from 'react-bootstrap'
+
+import { Container, Navbar, Nav, NavLink } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 export default function Navigation() {
   return (
-  // <nav>
-  //   <ul>
-  //     <li> <NavLink exact activeClassName="current" to='/Home'> Home </NavLink></li>
-  //     <li> <NavLink exact activeClassName="current" to='/Profile'> Profile </NavLink></li>
-  //   </ul>
-  // </nav>
   <>
   <Navbar className="header" expand="lg">
     <Container>

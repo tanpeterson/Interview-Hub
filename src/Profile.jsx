@@ -97,16 +97,6 @@ export default function Home() {
           {post.title.split(' ').map(el => <li className="tag__item"><i className="fas fa-tag mr-2"></i>{el}</li>)}	
 				</ul>
         
-        {/* <div className="mt-2"> */}
-        {/* <Button variant="outline-light" >
-            {" "}
-            <i className="far fa-comment-alt"></i> Comments{" "}
-          </Button> 
-         <Button variant="outline-light" className="ms-2">
-            {" "}
-            <i className="far fa-heart"></i> Favorite{" "}
-          </Button> */}
-          {/* </div> */}
         </Card.Body>
        
       </Card>

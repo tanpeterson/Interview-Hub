@@ -1,8 +1,3 @@
-// import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-// import { getFirestore, doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
-
-//hevagTNtzpv21kdOIW8F
-
 const firebaseConfig = {
   // Firebase config
 };
@@ -29,15 +24,12 @@ export function init() {
   document.querySelector("#cameraBtn").addEventListener("click", openUserMedia);
   document.querySelector("#hangupBtn").addEventListener("click", hangUp);
   document.querySelector("#createBtn").addEventListener("click", createRoom);
-  // document.querySelector("#joinBtn").addEventListener("click", joinRoom);
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector("#room-dialog"));
 }
 
 async function createRoom() {
-  // let app = initializeApp(firebaseConfig);
 
   document.querySelector("#createBtn").disabled = true;
-  // document.querySelector("#joinBtn").disabled = true;
   const db = firebase.firestore();
   const roomRef = await db.collection("rooms").doc();
 
@@ -83,7 +75,6 @@ async function createRoom() {
     });
   });
 
-  // Listening for remote session description below
   roomRef.onSnapshot(async (snapshot) => {
     const data = snapshot.data();
     if (!peerConnection.currentRemoteDescription && data && data.answer) {
@@ -92,9 +83,7 @@ async function createRoom() {
       await peerConnection.setRemoteDescription(rtcSessionDescription);
     }
   });
-  // Listening for remote session description above
 
-  // Listen for remote ICE candidates below
   roomRef.collection("calleeCandidates").onSnapshot((snapshot) => {
     snapshot.docChanges().forEach(async (change) => {
       if (change.type === "added") {
@@ -104,12 +93,10 @@ async function createRoom() {
       }
     });
   });
-  // Listen for remote ICE candidates above
 }
 
 function joinRoom(roomIdx = "") {
   document.querySelector("#createBtn").disabled = true;
-  // document.querySelector("#joinBtn").disabled = true;
 
   document.querySelector("#confirmJoinBtn").addEventListener(
     "click",
@@ -137,7 +124,6 @@ export async function joinRoomById(roomId) {
       peerConnection.addTrack(track, localStream);
     });
 
-    // Code for collecting ICE candidates below
     const calleeCandidatesCollection = roomRef.collection("calleeCandidates");
     peerConnection.addEventListener("icecandidate", (event) => {
       if (!event.candidate) {
@@ -147,7 +133,6 @@ export async function joinRoomById(roomId) {
       console.log("Got candidate: ", event.candidate);
       calleeCandidatesCollection.add(event.candidate.toJSON());
     });
-    // Code for collecting ICE candidates above
 
     peerConnection.addEventListener("track", (event) => {
       console.log("Got remote track:", event.streams[0]);
@@ -157,7 +142,6 @@ export async function joinRoomById(roomId) {
       });
     });
 
-    // Code for creating SDP answer below
     const offer = roomSnapshot.data().offer;
     console.log("Got offer:", offer);
     await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
@@ -172,9 +156,7 @@ export async function joinRoomById(roomId) {
       },
     };
     await roomRef.update(roomWithAnswer);
-    // Code for creating SDP answer above
 
-    // Listening for remote ICE candidates below
     roomRef.collection("callerCandidates").onSnapshot((snapshot) => {
       snapshot.docChanges().forEach(async (change) => {
         if (change.type === "added") {
@@ -184,7 +166,6 @@ export async function joinRoomById(roomId) {
         }
       });
     });
-    // Listening for remote ICE candidates above
   }
 }
 
@@ -200,7 +181,6 @@ export async function openUserMedia(e) {
 
   console.log("Stream:", document.querySelector("#localVideo").srcObject);
   document.querySelector("#cameraBtn").disabled = true;
-  // document.querySelector("#joinBtn").disabled = false;
   document.querySelector("#createBtn").disabled = false;
   document.querySelector("#hangupBtn").disabled = false;
 }
@@ -222,12 +202,10 @@ async function hangUp(e) {
   document.querySelector("#localVideo").srcObject = null;
   document.querySelector("#remoteVideo").srcObject = null;
   document.querySelector("#cameraBtn").disabled = false;
-  // document.querySelector("#joinBtn").disabled = true;
   document.querySelector("#createBtn").disabled = true;
   document.querySelector("#hangupBtn").disabled = true;
   document.querySelector("#currentRoom").innerText = "";
 
-  // Delete room on hangup
   if (roomId) {
     const db = firebase.firestore();
     const roomRef = db.collection("rooms").doc(roomId);
