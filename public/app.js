@@ -4,13 +4,7 @@
 //hevagTNtzpv21kdOIW8F
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBHBv6bOm-CfklcLcHrEMQtKTjPahnWczQ",
-  authDomain: "teammewtwo-3002b.firebaseapp.com",
-  projectId: "teammewtwo-3002b",
-  storageBucket: "teammewtwo-3002b.appspot.com",
-  messagingSenderId: "340276860693",
-  appId: "1:340276860693:web:166e29a435541dc8b0bb1c",
-  measurementId: "G-N4YWVTYKBY",
+  // Firebase config
 };
 
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
